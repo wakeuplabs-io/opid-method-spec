@@ -1,41 +1,39 @@
-# did:polygonid Method Specification
+# did:opid Method Specification
 
-Polygon ID - is an implementation of the [iden3 protocol](https://docs.iden3.io/protocol/spec/). The protocol is compatible with any Ethereum Virtual Machine (EVM) blockchain. Polygon ID aims to maximize the privacy of the identity holder by leveraging Zero Knowledge Proofs (ZKP) technology. The protocol enables users to generate ZK proof responses on Verifier request using the [ZK query language](https://0xpolygonid.github.io/tutorials/verifier/verification-library/zk-query-language/).
-
-For an overview of Polygon ID please read our tutorials page: [https://0xpolygonid.github.io/tutorials/](https://0xpolygonid.github.io/tutorials/)
+Optimism ID - is an implementation of the [iden3 protocol](https://docs.iden3.io/protocol/spec/). The protocol is compatible with any Ethereum Virtual Machine (EVM) blockchain. Optimism ID aims to maximize the privacy of the identity holder by leveraging Zero Knowledge Proofs (ZKP) technology. The protocol enables users to generate ZK proof responses on Verifier request using the ZK query language.
 
 ## Method Specific Identifier
 
-The namestring that shall identify this DID method is: `polygonid`
+The namestring that shall identify this DID method is: `opid`
 
-A DID that uses this method MUST begin with the following prefix: *`did:polygonid`*
+A DID that uses this method MUST begin with the following prefix: *`did:opid`*
 
 Per the DID specification, this string MUST be in lowercase. The remainder of the DID, after the prefix, is as follows:
 
 ---
 
-The method identifier is composed of a network identifier (“polygon”) and a specific identifier inside the network, such as "main", “mumbai” in Polygon network.
+The method identifier is composed of a network identifier (“optimism”) and a specific identifier inside the network, such as "main", "sepolia" in Optimism network.
 
 The identity identifier is base58 encoded [iden3 specific identifier](https://docs.iden3.io/getting-started/identity/identifier/) that is permanent, unique, and deterministically calculated from [the Genesis ID](https://docs.iden3.io/protocol/spec/#genesis-id).
 
 There is a special case when identity is not linked to any network. That means that identity cannot change it's state and because of this it's marked as "readonly".
 
 ```
-polygonid-did = "did:polygonid:" polygonid-specific-idstring
-polygonid-specific-idstring = [polygonid-blockchain ":" polygonid-networkID ":" ] polygonid-identifier
-polygonid-blockchain = "polygon" / "eth" / "readonly"
-polygonid-networkID = "main" / "mumbai" / "goerli"
-polygonid-identifier = 42*43 BASE58
+opid-did = "did:opid:" opid-specific-idstring
+opid-specific-idstring = [opid-blockchain ":" opid-networkID ":" ] opid-identifier
+opid-blockchain = "optimism" / "eth" / "readonly"
+opid-networkID = "main" / "sepolia"
+opid-identifier = 42*43 BASE58
 ```
 
 ### Example
 
-A valid polygonid DID:
+A valid opid DID:
 
 ```
-did:polygonid:polygon:main:2pzr1wiBm3Qhtq137NNPPDFvdk5xwRsjDFnMxpnYHm
-did:polygonid:polygon:mumbai:2qCU58EJgrELNZCDkSU23dQHZsBgAFWLNpNezo1g6b
-did:polygonid:readonly:2mbH5rt9zKT1mTivFAie88onmfQtBU9RQhjNPLwFZh // readonly
+did:opid:optimism:main:2pzr1wiBm3Qhtq137NNPPDFvdk5xwRsjDFnMxpnYHm
+did:opid:optimism:sepolia:2qCU58EJgrELNZCDkSU23dQHZsBgAFWLNpNezo1g6b
+did:opid:readonly:2mbH5rt9zKT1mTivFAie88onmfQtBU9RQhjNPLwFZh // readonly
 ```
 
 ## DID Document
@@ -49,15 +47,15 @@ Example:
             "https://www.w3.org/ns/did/v1",
             "https://schema.iden3.io/core/jsonld/auth.jsonld"
         ],
-        "id": "did:polygonid:polygon:mumbai:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx",
+        "id": "did:opid:optimism:sepolia:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx",
         "authentication": [
             {
-                "id": "did:polygonid:polygon:mumbai:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx?state=f3ed43e7fa950d746331b143bf16eae2dd97a1876704cbb8c620913421ea2f12",
+                "id": "did:opid:optimism:mumbai:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx?state=f3ed43e7fa950d746331b143bf16eae2dd97a1876704cbb8c620913421ea2f12",
                 "type": "Iden3StateInfo2023",
                 "blockchainAccountId": "80001:0x134B1BE34911E39A8397ec6289782989729807a4",
                 "published": true,
                 "info": {
-                    "id": "did:polygonid:polygon:mumbai:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx",
+                    "id": "did:opid:optimism:sepolia:2qL4AhwQThPWJ8QH9mxH41CDgKj9chrHN92azh5wkx",
                     "state": "f3ed43e7fa950d746331b143bf16eae2dd97a1876704cbb8c620913421ea2f12",
                     "replacedByState": "0000000000000000000000000000000000000000000000000000000000000000",
                     "createdAtTimestamp": "1677691329",
@@ -82,7 +80,7 @@ Example:
 
 ---
 
-The polygonid did method uses additional JSON-LD types.
+The opid did method uses additional JSON-LD types.
 
 The JSON-LD vocabulary is stored in:
 
@@ -96,7 +94,7 @@ Context contains `AuthBJJCredential`(Operational key)  and `Iden3StateInfo2023` 
 https://schema.iden3.io/core/jsonld/iden3proofs.jsonld
 ```
 
-Context contains `Iden3SparseMerkleTreeProof` and `BJJSignature2021` proofs types used with polygonID identity.
+Context contains `Iden3SparseMerkleTreeProof` and `BJJSignature2021` proofs types used with optimism id identity.
 
 ## Basic operations
 
@@ -126,26 +124,26 @@ Abstract algorithm for resolving [(read operation).](https://www.w3.org/TR/did-c
 
 Contract address for resolving the did (mumbai network): `0x134B1BE34911E39A8397ec6289782989729807a4`
 
-`PolygonID did driver` accepts DID in URI format. Currently, we support three URI formats:
+`OptimismId did driver` accepts DID in URI format. Currently, we support three URI formats:
 
-1. `did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8`
-2. `did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8?state=<hex_of_state>`
-3. `did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8?gist=<hex_of_gist_state>`
+1. `did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8`
+2. `did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8?state=<hex_of_state>`
+3. `did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8?gist=<hex_of_gist_state>`
 Each of these formats has a different `read` algorithm. But they all have a certain common logic of presentation.
 4. Common steps for all formats of DID.<br/>
-1.1 Get a method from DID (`polygonid|iden3`).<br/>
-1.2 Get a blockchain name from DID (`polygon|eth`).<br/>
-1.2 Get chain ID from DID. For `polygon` chain we support `main|mumbai` networks for `eth` chain `main|goerly` networks).<br/>
+1.1 Get a method from DID (`opid|iden3`).<br/>
+1.2 Get a blockchain name from DID (`optimism|eth`).<br/>
+1.2 Get chain ID from DID. For `optimism` chain we support `main|sepolia` networks for `eth` chain `main|goerly` networks).<br/>
 1.3 Verify data that was encoded on the identification (`2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8`) matches on parsed DID info.<br/>
 1.4 Find resolver by pair of chain name and blockchain id.<br/>
 5. Step 5:<br/>
-5.1 `Read` operation for the simple format of DID (`did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8`). This format means that the resolver should read the latest information about ID and GIST from the contract. If ID is the genesis one or doesn't exist on the contract, resolver will return only GIST info.<br/>
+5.1 `Read` operation for the simple format of DID (`did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8`). This format means that the resolver should read the latest information about ID and GIST from the contract. If ID is the genesis one or doesn't exist on the contract, resolver will return only GIST info.<br/>
     5.1.1 Call `getGISTRoot` from the contract to get the latest GIST state.<br/>
     5.1.2 Call `getGISTRootInfo` with GIST from the step above to get the latest information about GIST.<br/>
     5.1.3 Call `getStateInfoById` with the user ID to get the latest information about the user’s state. If it does not exist return an empty object<br/>
     ```json
     "info": {
-        "id": "did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
+        "id": "did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
         "state": "0a4f612419d84ca6ddaa377ec3f2411aba4bc6a3caac6996bc726790a0693424",
         "replacedByState": "0000000000000000000000000000000000000000000000000000000000000000",
         "createdAtTimestamp": "1677692829",
@@ -167,7 +165,7 @@ Each of these formats has a different `read` algorithm. But they all have a cert
     5.2.2 Verify that this state is the user’s state.<br/>
 ```json
     "info": {
-      "id": "did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
+      "id": "did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
       "state": "0a4f612419d84ca6ddaa377ec3f2411aba4bc6a3caac6996bc726790a0693424",
       "replacedByState": "0000000000000000000000000000000000000000000000000000000000000000",
       "createdAtTimestamp": "1677692829",
@@ -183,7 +181,7 @@ Each of these formats has a different `read` algorithm. But they all have a cert
     5.3.4 Call `getStateInfoByState` with the value from proof to return information about the user’s state.<br/>
 ```json
 "info": {
-    "id": "did:polygonid:polygon:mumbai:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
+    "id": "did:opid:optimism:sepolia:2qHaobUk3dBVCkox8HtJezfWLDnGrBPufieEJ5A5o8",
     "state": "0a4f612419d84ca6ddaa377ec3f2411aba4bc6a3caac6996bc726790a0693424",
     "replacedByState": "0000000000000000000000000000000000000000000000000000000000000000",
     "createdAtTimestamp": "1677692829",
@@ -250,7 +248,7 @@ Eavesdropping attacks need to be mitigated by the usage of a secure communicatio
 
 **Cryptographic Agility**
 
-The Polygon ID DID method supports EDDSA on the [Baby JubJub curve](https://github.com/iden3/iden3-docs/blob/master/source/docs/Baby-Jubjub.pdf) and [Sparse Merkle Tree](https://docs.iden3.io/protocol/spec/#merkle-tree) Proofs for the “signing” of credentials. For the generation of the zero knowledge proofs we use zkSNARKs with the Groth16 proving scheme. We may add other “signing” and “proving” algorithms in the future.
+The Optimism ID DID method supports EDDSA on the [Baby JubJub curve](https://github.com/iden3/iden3-docs/blob/master/source/docs/Baby-Jubjub.pdf) and [Sparse Merkle Tree](https://docs.iden3.io/protocol/spec/#merkle-tree) Proofs for the “signing” of credentials. For the generation of the zero knowledge proofs we use zkSNARKs with the Groth16 proving scheme. We may add other “signing” and “proving” algorithms in the future.
 
 **Keep DID Keys safe**
 
@@ -258,10 +256,10 @@ The DID method includes support for key rotation, however if the key is compromi
 
 **Keep personal data safe**
 
-The syntax and construction of the Polygon ID DID and its associated DID Document helps to ensure that no Personally Identifiable Information (PII) or other personal data is exposed by these constructs: 
+The syntax and construction of the Optimism ID DID and its associated DID Document helps to ensure that no Personally Identifiable Information (PII) or other personal data is exposed by these constructs: 
 
 - Only the state of identity is required to be published on-chain. In case of on-chain identity all the data will be available in the smart-contract.
-- Identifiers in Polygon ID do not reveal specific personal information about the identity holder, and the holder can choose to have unique random identifiers for each new interaction with verifiers.
+- Identifiers in Optimism ID do not reveal specific personal information about the identity holder, and the holder can choose to have unique random identifiers for each new interaction with verifiers.
 - We also implemented zero-knowledge proofs such that interactions between the user and verifier reveal the minimal amount of data possible.
 
 **Additional Privacy and Security Recommendations:**
@@ -279,7 +277,7 @@ Implementers are strongly encouraged to review the following:
 
 ---
 
+- [https://github.com/wakeuplabs-io/opid](https://github.com/wakeuplabs-io/opid)
 - [https://w3c-ccg.github.io/did-spec/](https://w3c-ccg.github.io/did-spec/)
 - [https://idocs.iden3.io/#/core/spec/spec?id=identifier-format](https://idocs.iden3.io/#/core/spec/spec?id=identifier-format)
 - [https://idocs.iden3.io/#/core/spec/spec](https://idocs.iden3.io/#/core/spec/spec?id=identifier-format)
-- [https://0xpolygonid.github.io/tutorials/](https://0xpolygonid.github.io/tutorials/)
