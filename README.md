@@ -1,7 +1,7 @@
-# `did:polygonid` DID Method Specification
+# `did:opid` DID Method Specification
 
-This repository contains the `did:polygonid` DID Method Specification.
+This repository contains the `did:opid` DID Method Specification.
 
 The specification is available here:
-[Polygon ID DID Method specification](did-polygonid-method.md).
+[Optimism ID DID Method specification](did-opid-method.md).
 
